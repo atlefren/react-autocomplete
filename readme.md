@@ -9,7 +9,7 @@ Supports selection using keyboard and mouse.
 Usage
 ----------
 
-* bower install react-autocomplete
+* ```bower install react-autocomplete```
 * Include ```dist/react-autocomplete.min.js``` and ```dist/react-autocomplete.min.css``` in your page.
 * Do something like:
 
@@ -29,4 +29,4 @@ Usage
 
 Demo
 ----
-See http://code.atlefren.net/react-map/index.html
+See http://code.atlefren.net/react-autocomplete/index.html

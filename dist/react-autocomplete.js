@@ -2,6 +2,14 @@
 var Autocomplete = (function () {
     'use strict';
 
+    function getValueOrFunctionRes(dict, attr) {
+        var text = dict[attr];
+        if (_.isFunction(text)) {
+            return text();
+        }
+        return text;
+    }
+
     /*
     This is a list element in a dropdown, reperesenting individual search results.
     */
@@ -22,10 +30,10 @@ var Autocomplete = (function () {
             if (this.props.selected) {
                 className = 'selected';
             }
-            var text = this.props.item[this.props.displayAttribute];
-            if (_.isFunction(text)) {
-                text = text();
-            }
+            var text = getValueOrFunctionRes(
+                this.props.item,
+                this.props.displayAttribute
+            );
             return (
                 React.createElement("li", null, 
                     React.createElement("a", {href: "/#", 
@@ -92,7 +100,8 @@ var Autocomplete = (function () {
 
         //select an item, tell the parent and update state
         selectItem: function (item) {
-            this.setState({searchVal: item.name});
+            var text = getValueOrFunctionRes(item, this.props.displayAttribute);
+            this.setState({searchVal: text});
             this.setState({selectedItem: item});
             this.props.select(item);
         },

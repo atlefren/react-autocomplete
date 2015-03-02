@@ -17,12 +17,14 @@ Usage
 <Autocomplete 
     select={itemSelected}
     displayAttribute='beerName'
+    idAttribute='id'
     autocompleteSearch={autocompleteSearch}/>
 }
 ```
 * where:
     - ```select``` is the callback function when the user selects an element
-    - ```displayAttribute``` is the attribute of each result to display in the list
+    - ```displayAttribute``` is the attribute (or function) of each result to display in the list (default: name)
+    - ```idAttribute``` is an unique id attribute of each result(default: id)
     - ```autocompleteSearch``` is the search function: takes values (POJO) and callback function, callback expects to be called with an array of POJOS
     - ```extraParams``` is an optional POJO with extra attributes to the autocompleteSearch function
 * see index.html for example usage

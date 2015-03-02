@@ -22,6 +22,10 @@ var Autocomplete = (function () {
             if (this.props.selected) {
                 className = 'selected';
             }
+            var text = this.props.item[this.props.displayAttribute];
+            if (_.isFunction(text)) {
+                text = text();
+            }
             return (
                 React.createElement("li", null, 
                     React.createElement("a", {href: "/#", 
@@ -29,7 +33,7 @@ var Autocomplete = (function () {
                         onClick: this.select, 
                         onMouseOver: this.onMouseOver, 
                         className: className}, 
-                        this.props.item[this.props.displayAttribute]
+                        text
                     )
                 )
             ); 
@@ -53,7 +57,8 @@ var Autocomplete = (function () {
 
         getDefaultProps: function() {
             return {
-                displayAttribute: 'name'
+                displayAttribute: 'name',
+                idAttribute: 'id'
             };
         },
 
@@ -140,6 +145,7 @@ var Autocomplete = (function () {
                             item: item, 
                             selected: selected, 
                             displayAttribute: this.props.displayAttribute, 
+                            idAttribute: this.props.idAttribute, 
                             mouseOver: this.mouseOver, 
                             selectItem: this.selectItem})
                     );
